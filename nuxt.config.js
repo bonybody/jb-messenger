@@ -33,6 +33,27 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.API_KEY,
+          authDomain: process.env.AUTH_DOMAIN,
+          projectId: process.env.PROJECT_ID,
+          storageBucket: process.env.STORAGE_BUCKET,
+          messagingSenderId: process.env.MESSAGING_SENDER_ID,
+          appId: process.env.APP_ID,
+          measurementId: process.env.MEASUREMENT_ID,
+        },
+        services: {
+          persistence: 'local',
+          initialize: {
+            onAuthStateChangedAction: 'onAuthStateChangedAction',
+          },
+          ssr: true
+        }
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -41,8 +62,14 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'ja'
     }
+  },
+
+  workbox: {
+    importScripts: [
+      '/firebase-auth-sw.js'
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
