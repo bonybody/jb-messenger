@@ -14,7 +14,13 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    {src: '@/assets/scss/index.scss', lang: 'scss'}
   ],
+  styleResources: {
+    scss: [
+      '@/assets/scss/_variables.scss',
+    ],
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -30,6 +36,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
@@ -70,11 +77,11 @@ export default {
   axios: {},
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
-  pwa: {
-    manifest: {
-      lang: 'ja'
-    }
-  },
+  // pwa: {
+  //   manifest: {
+  //     lang: 'ja'
+  //   }
+  // },
 
   workbox: {
     importScripts: [
