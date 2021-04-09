@@ -19,7 +19,7 @@
           </normal-form-section>
         </div>
         <div class="form__line">
-          <app-button>ログイン</app-button>
+          <app-button :type="'submit'">ログイン</app-button>
         </div>
       </form>
       <div class="form__line form__line--link">
@@ -54,11 +54,11 @@ export default {
     async login() {
       try {
         const res = await this.$myAuth.loginByEmail(this.email, this.password)
-        console.log('ログイン成功')
+        console.log(res)
+        console.log(this.$myAuth.loggedIn())
       } catch (e) {
         this.err = e.message
       }
-
     }
   }
 

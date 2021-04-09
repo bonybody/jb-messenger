@@ -24,7 +24,7 @@
           </normal-form-section>
         </div>
         <div class="form__line">
-          <app-button @click="login">新規登録</app-button>
+          <app-button @click="signUp()">新規登録</app-button>
         </div>
       </form>
       <div class="form__line form__line--link">

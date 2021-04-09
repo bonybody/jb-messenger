@@ -12,7 +12,7 @@ class MyAuth {
   async signUpByEmailWithName(email, password, name) {
     return await this.fire.auth.createUserWithEmailAndPassword(
       email, password
-    ).then(({ user }) => {
+    ).then(({user}) => {
       user.updateProfile({
         displayName: name
       })
@@ -22,6 +22,7 @@ class MyAuth {
   async loginByEmail(email, password) {
     return await this.fire.auth.signInWithEmailAndPassword(email, password);
   }
+
   async logout() {
     return await this.fire.auth.signOut()
   }
@@ -32,12 +33,14 @@ class MyAuth {
 
 
   loggedIn() {
-    return this.auth.loggedIn
+    this.fire.auth.onAuthStateChanged((user) => {
+      if (user) {
+        return true
+      } else {
+        return  false
+      }
+    })
   }
-  async logout() {
-    return await this.auth.logout()
-  }
-
   getToken() {
     return this.auth.strategy.token.get()
   }

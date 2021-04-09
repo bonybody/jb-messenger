@@ -30,15 +30,15 @@ export default {
 }
 
 .mini {
-  font-weight: $mini-font-size;
+  font-size: $mini-font-size;
 }
 .medium {
-  font-weight: $medium-font-size;
+  font-size: $medium-font-size;
 }
 .semiLarge {
-  font-weight: $semi-large-font-size;
+  font-size: $semi-large-font-size;
 }
 .large {
-  font-weight: $large-font-size;
+  font-size: $large-font-size;
 }
 </style>
