@@ -54,8 +54,6 @@ export default {
     async login() {
       try {
         const res = await this.$myAuth.loginByEmail(this.email, this.password)
-        console.log(res)
-        console.log(this.$myAuth.loggedIn())
       } catch (e) {
         this.err = e.message
       }

@@ -1,6 +1,6 @@
 const isDev = process.env.NODE_ENV === 'development'
 const useEmulators = false // manually change if emulators needed
-
+console.log(isDev)
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -13,6 +13,11 @@ export default {
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
+  },
+
+  loading: {
+    color: 'blue',
+    height: '5px'
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -35,12 +40,17 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
+  modules: [
+    '@nuxtjs/style-resources',
+    // https://go.nuxtjs.dev/axios
+    '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/pwa',
     '@nuxtjs/firebase'
   ],
 
   firebase: {
-    lazy: false,
+    // lazy: false,
     config: {
       apiKey: process.env.API_KEY,
       authDomain: process.env.AUTH_DOMAIN,
@@ -50,80 +60,63 @@ export default {
       appId: process.env.APP_ID,
       measurementId: process.env.MEASUREMENT_ID,
     },
-    onFirebaseHosting: false,
-    terminateDatabasesAfterGenerate: true,
+    // onFirebaseHosting: false,
+    // terminateDatabasesAfterGenerate: true,
     services: {
       auth: {
+        persistence: 'local',
         initialize: {
           onAuthStateChangedAction: 'onAuthStateChanged',
         },
         ssr: true,
-        emulatorPort: isDev && useEmulators ? 9099 : undefined,
-        disableEmulatorWarnings: false,
       },
-      firestore: {
-        memoryOnly: false,
-        enablePersistence: true,
-        emulatorPort: isDev && useEmulators ? 8080 : undefined,
-      },
-      functions: {
-        emulatorPort: isDev && useEmulators ? 12345 : undefined,
-      },
-      storage: true,
-      database: {
-        emulatorPort: isDev && useEmulators ? 9000 : undefined,
-      },
-      performance: true,
-      analytics: true,
-      remoteConfig: {
-        settings: {
-          fetchTimeoutMillis: 60000,
-          minimumFetchIntervalMillis: 43200000,
-        },
-        defaultConfig: {
-          welcome_message: 'Welcome',
-        },
-      },
-      messaging: {
-        createServiceWorker: true,
-        // actions: [
-        //   {
-        //     action: 'goToLupasGithub',
-        //     url: 'https://github.com/lupas',
-        //   },
-        //   {
-        //     action: 'goToModuleGithub',
-        //     url: 'https://github.com/nuxt-community/firebase-module',
-        //   },
-        // ],
-        // fcmPublicVapidKey:
-        //   'BL_xoiuOe5vbb2vJkCNnuswn03NwCsyCkJUgRbuQA5tpg7J4E4z50MO8b-wrrad6fcysYAaFjHqU7D9o0oCWL8w',
-      },
+      // firestore: {
+      //   memoryOnly: false,
+      //   enablePersistence: true,
+      //   emulatorPort: isDev && useEmulators ? 8080 : undefined,
+      // },
+      // functions: {
+      //   emulatorPort: isDev && useEmulators ? 12345 : undefined,
+      // },
+      // storage: true,
+      // database: {
+      //   emulatorPort: isDev && useEmulators ? 9000 : undefined,
+      // },
+      // performance: true,
+      // analytics: true,
+      // remoteConfig: {
+      //   settings: {
+      //     fetchTimeoutMillis: 60000,
+      //     minimumFetchIntervalMillis: 43200000,
+      //   },
+      //   defaultConfig: {
+      //     welcome_message: 'Welcome',
+      //   },
+      // },
+      // messaging: {
+      //   createServiceWorker: true,
+      // },
     },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/style-resources',
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-  ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
+    meta: false,
+    icon: false,
+
     workbox: {
       importScripts: [
         '/firebase-auth-sw.js'
-      ]
+      ],
+      // by default the workbox module will not install the service worker in dev environment to avoid conflicts with HMR
+      // only set this true for testing and remember to always clear your browser cache in development
+      dev: true
     },
-    manifest: {
-      lang: 'ja'
-    }
   },
 
 

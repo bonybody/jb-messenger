@@ -71,6 +71,10 @@ button, a {
   text-align: center;
   padding: $medium-padding;
   box-sizing: border-box;
+  transition: $transition;
+}
+button:hover, a:hover {
+  filter: $hover-filter;
 }
 
 .auto {

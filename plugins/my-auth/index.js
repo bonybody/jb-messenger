@@ -1,11 +1,12 @@
-export default function ({$fire, redirect}, inject) {
-  const myAuth = new MyAuth($fire, redirect)
+export default function ({$fire, redirect, store}, inject) {
+  const myAuth = new MyAuth($fire, redirect, store)
   inject('myAuth', myAuth)
 }
 
 class MyAuth {
-  constructor(fire, redirect) {
+  constructor(fire, redirect, store) {
     this.fire = fire
+    this.store = store
     this.redirect = redirect
   }
 
@@ -33,13 +34,7 @@ class MyAuth {
 
 
   loggedIn() {
-    this.fire.auth.onAuthStateChanged((user) => {
-      if (user) {
-        return true
-      } else {
-        return  false
-      }
-    })
+    return this.store.getters.isLoggedIn
   }
   getToken() {
     return this.auth.strategy.token.get()
