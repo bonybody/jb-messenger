@@ -8,7 +8,8 @@
       </app-heading>
     </div>
     <div class="section__form">
-      <app-input :type="type" :name="name" v-model="inputValue" :id="name">
+      <app-text-area v-if="type === 'textarea'" :placeholder="placeholder" :name="name"></app-text-area>
+      <app-input v-else :type="type" :placeholder="placeholder" :name="name" v-model="inputValue" :id="name">
       </app-input>
     </div>
   </div>
@@ -17,10 +18,11 @@
 <script>
 import AppHeading from "~/components/atoms/heading/AppHeading";
 import AppInput from "~/components/atoms/forms/AppInput";
+import AppTextArea from "@/components/atoms/forms/AppTextArea";
 
 export default {
   name: "NormalFormSection",
-  components: {AppInput, AppHeading},
+  components: {AppTextArea, AppInput, AppHeading},
   props: {
     type: {
       type: String,
@@ -32,6 +34,10 @@ export default {
     },
     value: {
       require: true
+    },
+    placeholder: {
+      type: String,
+      default: ''
     }
   },
   computed: {

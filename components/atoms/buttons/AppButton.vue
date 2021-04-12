@@ -82,7 +82,7 @@ button:hover, a:hover {
 }
 
 .mini {
-  min-width: 100px;
+  min-width: 80px;
 }
 
 .second {
