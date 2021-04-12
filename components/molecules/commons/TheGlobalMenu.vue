@@ -3,23 +3,18 @@
        :class="{ 'wrap--active': active, 'wrap--not-active': !active }"
   >
     <nav class="global-nav" :class="{'active': active, 'not-active': !active}">
-      <h2 class="global-nav__heading">
-        <app-heading :size="'semi-large'">サイト内メニュー</app-heading>
-      </h2>
       <ul class="menus">
         <template v-for="(menu, index) in menus">
           <li :key="index" class="menus__menu">
             <nuxt-link :to="menu.path">{{ menu.name }}</nuxt-link>
           </li>
         </template>
-        <li class="global-nav__close">
-        </li>
       </ul>
-      <div class="global-nav__buttons">
-        <div class="global-nav__button">
+      <div class="buttons">
+        <div class="buttons__button">
           <app-button :second="true" @click="logout">ログアウト</app-button>
         </div>
-        <div class="global-nav__button">
+        <div class="buttons__button">
           <app-button @click="$emit('click')">閉じる</app-button>
         </div>
       </div>
@@ -100,7 +95,7 @@ export default {
 
 .global-nav {
   box-sizing: border-box;
-  padding: $medium-padding;
+  padding: $large-margin $medium-padding;
   background-color: $main-background-color;
   color: $base-font-color;
   display: block;
@@ -110,18 +105,18 @@ export default {
   top: 0;
   height: 100%;
   z-index: 1000;
+}
 
-  &__heading {
-    margin-bottom: $large-margin;
-  }
-
-  &__close {
-    text-align: center;
+.buttons {
+  &__button {
+    margin-bottom: $medium-margin;
   }
 }
 
 .menus {
+  margin-bottom: $large-margin;
   &__menu {
+    font-size: $semi-large-font-size;
     font-weight: bold;
     margin-bottom: $medium-padding;
     transition: $transition;
