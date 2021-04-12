@@ -20,7 +20,13 @@
         "Service-Worker-Allowed": "/"
       }
     },
-
+    {
+      "src": "/firebase-auth-sw.js",
+      "dest": "/_nuxt/static/firebase-auth-sw.js",
+      "headers": {
+        "Service-Worker-Allowed": "/"
+      }
+    },
     {
       "src": "/s/(.*)",
       "headers": { "cache-control": "public, max-age=31536000" },
