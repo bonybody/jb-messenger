@@ -24,6 +24,7 @@
       "src": "/firebase-auth-sw.js",
       "dest": "/_nuxt/static/firebase-auth-sw.js",
       "headers": {
+        "cache-control": "public, max-age=43200, immutable",
         "Service-Worker-Allowed": "/"
       }
     },
