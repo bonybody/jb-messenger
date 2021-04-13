@@ -115,12 +115,13 @@ export default {
 
 .menus {
   margin-bottom: $large-margin;
+
   &__menu {
     font-size: $semi-large-font-size;
     font-weight: bold;
     margin-bottom: $medium-padding;
     transition: $transition;
-    &:hover {
+    @include hover() {
       color: $weak-font-color;
     }
   }
