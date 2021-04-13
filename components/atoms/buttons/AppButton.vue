@@ -67,7 +67,7 @@ button, a {
   border-radius: $border-radius;
   background-color: $primary-color;
   color: $on-font-color;
-  font-size: $medium-font-size;
+  font-size: $mini-font-size;
   text-align: center;
   padding: $medium-padding;
   box-sizing: border-box;

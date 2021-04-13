@@ -19,4 +19,8 @@ export default {
 .header {
   margin-bottom: $large-margin;
 }
+main {
+  box-sizing: border-box;
+  padding: 0 $medium-padding;
+}
 </style>
