@@ -1,17 +1,5 @@
 <template>
-  <div>
-    <div class="wrap">
-      <app-text-link :to="'login'">ログイン</app-text-link>
-    </div>
-    <div class="wrap">
-      <app-text-link :to="'sign-up'">新規登録</app-text-link>
-    </div>
-    <div v-show="$myAuth.loggedIn()">
-      <app-button :mini="true">ログイン中</app-button>
-    </div>
-    <div v-show="!$myAuth.loggedIn()">
-      <app-button :mini="true" :second="true">未ログイン</app-button>
-    </div>
+  <div class="wrap">
     <div class="form">
       <schedule-form/>
     </div>
@@ -31,7 +19,7 @@ export default {
 
 <style scoped lang="scss">
 .form {
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
 }
 </style>

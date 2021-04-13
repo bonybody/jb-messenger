@@ -1,6 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development'
 const useEmulators = false // manually change if emulators needed
-console.log(isDev)
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

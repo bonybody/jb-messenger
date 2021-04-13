@@ -73,7 +73,6 @@ export default {
 
 <style scoped lang="scss">
 .form {
-  max-width: 250px;
   margin: 0 auto;
   &__line {
     margin-bottom: $semi-large-margin;
