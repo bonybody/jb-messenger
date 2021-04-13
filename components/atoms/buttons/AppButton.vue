@@ -1,31 +1,19 @@
 <template>
-    <button
-        v-if="!Boolean(to)"
-        :type="type"
-        @click="$emit('click')"
-        :class="{
+  <button
+      :type="type"
+      @click="click"
+      @animationend="onClick = false"
+      :class="{
       disabled: disabled,
       danger: danger,
       second: second,
       mini: mini,
-      auto: !mini
+      auto: !mini,
+      click: onClick
     }"
-        :disabled="disabled">
-      <slot></slot>
-    </button>
-    <nuxt-link
-        v-else
-        :to="to"
-        :class="{
-      disabled: disabled,
-      danger: danger,
-      second: second,
-      mini: mini,
-      auto: !mini
-    }"
-        :disabled="disabled">
-      <slot></slot>
-    </nuxt-link>
+      :disabled="disabled">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
@@ -56,7 +44,24 @@ export default {
       type: String | Object,
       default: null
     }
+  },
+  data() {
+    return {
+      onClick: false,
+      interval: null
+    }
+  },
+  methods: {
+    click: function () {
+      this.onClick = true
+      if (this.to) {
+        this.$router.push(this.to)
+      } else {
+        this.$emit('click')
+      }
+    }
   }
+
 }
 </script>
 
@@ -73,6 +78,7 @@ button, a {
   box-sizing: border-box;
   transition: $transition;
 }
+
 button:hover, a:hover {
   filter: $hover-filter;
 }
@@ -89,5 +95,21 @@ button:hover, a:hover {
   color: $primary-color;
   border: 1px solid $primary-color;
   background-color: $main-background-color;
+}
+
+.click {
+  animation-direction: normal;
+  animation-duration: 0.3s;
+  animation-name: anim_sc;
+}
+
+@keyframes anim_sc {
+  50% {
+    filter: brightness(120%);
+  }
+
+  100% {
+    filter: brightness(100%);
+  }
 }
 </style>
