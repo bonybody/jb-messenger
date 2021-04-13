@@ -66,28 +66,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.form {
-  margin: 0 auto;
-
-  &__section {
-    margin-bottom: $large-margin;
-  }
-
-  &__line {
-    margin-bottom: $medium-margin;
-
-    &--button {
-      margin-top: $large-margin;
-    }
-
-    &--heading {
-      text-align: center;
-    }
-
-    &--link {
-      text-align: right;
-    }
-
-  }
-}
+@include form;
 </style>
