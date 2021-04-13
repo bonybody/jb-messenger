@@ -12,6 +12,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.wrap {
+  max-width: 380px;
+  margin: 0 auto;
+}
 .button {
 }
 form {

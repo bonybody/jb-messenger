@@ -54,5 +54,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.section {
+  &__label {
+    margin-bottom: $mini-margin;
+  }
+}
 </style>

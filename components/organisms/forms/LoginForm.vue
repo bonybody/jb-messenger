@@ -2,7 +2,7 @@
   <div class="form">
     <form-frame>
       <div class="form__line form__line--heading">
-        <app-heading>ログイン</app-heading>
+        <app-heading size="semi-large">ログイン</app-heading>
       </div>
       <form @submit.prevent="login">
         <div class="form__line">
@@ -18,7 +18,7 @@
             <template v-slot:label>パスワード</template>
           </normal-form-section>
         </div>
-        <div class="form__line">
+        <div class="form__line form__line--button">
           <app-button :type="'submit'">ログイン</app-button>
         </div>
       </form>
@@ -65,10 +65,12 @@ export default {
 
 <style scoped lang="scss">
 .form {
-  max-width: 250px;
   margin: 0 auto;
   &__line {
     margin-bottom: $semi-large-margin;
+    &--button {
+      margin-top: $large-margin;
+    }
     &--heading {
       text-align: center;
     }
