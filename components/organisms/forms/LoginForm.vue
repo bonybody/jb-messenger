@@ -2,12 +2,14 @@
   <div class="form">
     <form-frame>
       <div class="form__line form__line--heading">
-        <app-heading size="semi-large">ログイン</app-heading>
+        <app-heading size="large">ログイン</app-heading>
       </div>
-      <form @submit.prevent="login">
+      <div class="form__section">
         <div class="form__line">
           <app-error-message>{{ err }}</app-error-message>
         </div>
+      </div>
+      <form class="form__section" @submit.prevent="login">
         <div class="form__line">
           <normal-form-section v-model="email" :type="'email'" :name="'email'">
             <template v-slot:label>メールアドレス</template>
@@ -18,8 +20,8 @@
             <template v-slot:label>パスワード</template>
           </normal-form-section>
         </div>
-        <div class="form__line form__line--button">
-          <app-button :type="'submit'">ログイン</app-button>
+        <div class="form__line--button">
+          <app-button type="submit">ログイン</app-button>
         </div>
       </form>
       <div class="form__line form__line--link">
@@ -41,7 +43,7 @@ import AppTextLink from "@/components/atoms/links/AppTextLink";
 
 export default {
   name: "LoginForm",
-  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame ,AppInput, AppButton},
+  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame, AppInput, AppButton},
   data() {
     return {
       name: '',
@@ -66,14 +68,22 @@ export default {
 <style scoped lang="scss">
 .form {
   margin: 0 auto;
+
+  &__section {
+    margin-bottom: $large-margin;
+  }
+
   &__line {
-    margin-bottom: $semi-large-margin;
+    margin-bottom: $medium-margin;
+
     &--button {
       margin-top: $large-margin;
     }
+
     &--heading {
       text-align: center;
     }
+
     &--link {
       text-align: right;
     }

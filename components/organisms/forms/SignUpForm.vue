@@ -2,9 +2,9 @@
   <div class="form">
     <form-frame>
       <div class="form__line form__line--heading">
-        <app-heading>新規登録</app-heading>
+        <app-heading size="large">新規登録</app-heading>
       </div>
-      <form @submit.prevent="signUp">
+      <form class="form__section" @submit.prevent="signUp">
         <div class="form__line">
           <app-error-message>{{ err }}</app-error-message>
         </div>
@@ -23,7 +23,7 @@
             <template v-slot:label>パスワード</template>
           </normal-form-section>
         </div>
-        <div class="form__line">
+        <div class="form__line--button">
           <app-button @click="signUp()">新規登録</app-button>
         </div>
       </form>
@@ -45,7 +45,7 @@ import AppTextLink from "@/components/atoms/links/AppTextLink";
 
 export default {
   name: "SignUpForm",
-  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame , AppButton},
+  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame, AppButton},
   data() {
     return {
       name: '',
@@ -74,14 +74,23 @@ export default {
 <style scoped lang="scss">
 .form {
   margin: 0 auto;
+
+  &__section {
+    margin-bottom: $large-margin;
+  }
+
   &__line {
-    margin-bottom: $semi-large-margin;
+    margin-bottom: $medium-margin;
+
     &--heading {
       text-align: center;
     }
 
     &--link {
       text-align: right;
+    }
+    &--button {
+      margin-top: $large-margin;
     }
 
   }
