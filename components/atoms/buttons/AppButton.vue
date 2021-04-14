@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-button, a {
+button {
   display: inline-block;
   font-weight: bold;
   border-radius: $border-radius;
@@ -100,6 +100,7 @@ button, a {
   animation-direction: normal;
   animation-duration: 0.3s;
   animation-name: anim_sc;
+  filter: brightness(100%);
 }
 
 @keyframes anim_sc {
