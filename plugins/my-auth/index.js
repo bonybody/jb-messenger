@@ -10,8 +10,8 @@ class MyAuth {
     this.redirect = redirect
   }
 
-  async signUpByEmailWithName(email, password, name) {
-    return await this.fire.auth.createUserWithEmailAndPassword(
+  signUpByEmailWithName(email, password, name) {
+    return this.fire.auth.createUserWithEmailAndPassword(
       email, password
     ).then(({user}) => {
       user.updateProfile({
@@ -20,16 +20,16 @@ class MyAuth {
     })
   }
 
-  async loginByEmail(email, password) {
-    return await this.fire.auth.signInWithEmailAndPassword(email, password);
+  loginByEmail(email, password) {
+    return this.fire.auth.signInWithEmailAndPassword(email, password);
   }
 
-  async logout() {
-    return await this.fire.auth.signOut()
+  logout() {
+    return this.fire.auth.signOut()
   }
 
-  async getUser() {
-    return await this.fire.auth.currentUser;
+  getUser() {
+    return this.fire.auth.currentUser;
   }
 
 
