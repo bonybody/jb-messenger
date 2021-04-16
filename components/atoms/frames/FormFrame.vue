@@ -14,6 +14,7 @@ name: "FormFrame"
 .wrap {
   background-color: $main-background-color;
   border-radius: $border-radius;
+  border: 1px solid $shadow-color;
   box-sizing: border-box;
   padding: $medium-padding;
 }

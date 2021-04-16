@@ -32,8 +32,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // '@/plugins/firebase',
-    '@/plugins/my-auth'
+    '@/plugins/my-auth',
+    '@/plugins/api'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -70,11 +70,11 @@ export default {
         },
         ssr: true,
       },
-      // firestore: {
-      //   memoryOnly: false,
-      //   enablePersistence: true,
-      //   emulatorPort: isDev && useEmulators ? 8080 : undefined,
-      // },
+      firestore: {
+        memoryOnly: false,
+        // enablePersistence: true,
+        // emulatorPort: isDev && useEmulators ? 8080 : undefined,
+      },
       // functions: {
       //   emulatorPort: isDev && useEmulators ? 12345 : undefined,
       // },

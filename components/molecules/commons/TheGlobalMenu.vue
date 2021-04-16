@@ -42,7 +42,7 @@ export default {
         {
           id: 1,
           name: 'ホーム',
-          path: '/',
+          path: '/home',
         },
         {
           id: 2,
@@ -72,6 +72,7 @@ export default {
   width: 100vw;
   height: 100vh;
   position: fixed;
+  z-index: 1000;
   top: 0;
   right: 0;
   transition: 0.3s all;
@@ -88,7 +89,7 @@ export default {
 .margin-area {
   position: absolute;
   background-color: $shadow-color;
-  opacity: 0.5;
+  opacity: 0.8;
   width: 100%;
   height: 100%;
 }
