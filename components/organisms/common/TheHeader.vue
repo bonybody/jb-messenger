@@ -20,15 +20,13 @@
           </li>
         </ul>
         <ul v-show="$myAuth.loggedIn()">
-          <div class="global-nav">
-            <div class="global-nav__toggle">
-              <app-button :second="true" :mini="true" @click="changeMenuState">メニュー</app-button>
-            </div>
-            <div class="global-nav__nav">
-              <the-global-menu :active="menuState" @click="changeMenuState"/>
-            </div>
-          </div>
+          <li class="global-nav__toggle">
+            <app-button :second="true" :mini="true" @click="changeMenuState">メニュー</app-button>
+          </li>
         </ul>
+        <div class="global-nav__nav">
+          <the-global-menu :active="menuState" @click="changeMenuState"/>
+        </div>
       </nav>
     </div>
   </header>

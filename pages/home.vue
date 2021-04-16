@@ -11,7 +11,6 @@ import ScheduleForm from "@/components/organisms/forms/ScheduleForm";
 import NewSchedules from "@/components/organisms/schedules/NewSchedules";
 
 export default {
-  name: "index",
   components: {NewSchedules, ScheduleForm},
 }
 </script>

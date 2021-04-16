@@ -2,14 +2,14 @@
   <button
       :type="type"
       @click="click"
-      @animationend="onClick = false"
       :class="{
       disabled: disabled,
       danger: danger,
       second: second,
       mini: mini,
       auto: !mini,
-      click: onClick
+      click: onClick,
+      circle: circle
     }"
       :disabled="disabled">
     <slot></slot>
@@ -43,6 +43,10 @@ export default {
     to: {
       type: String | Object,
       default: null
+    },
+    circle: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -59,6 +63,9 @@ export default {
       } else {
         this.$emit('click')
       }
+      setTimeout(() => {
+        this.onClick = false
+      }, 300)
     }
   }
 
@@ -84,6 +91,7 @@ button {
 
 .auto {
   width: 100%;
+  height: 100%;
 }
 
 .mini {
@@ -101,6 +109,10 @@ button {
   animation-duration: 0.3s;
   animation-name: anim_sc;
   filter: brightness(100%);
+}
+
+.circle {
+  border-radius: 1000px;
 }
 
 @keyframes anim_sc {
