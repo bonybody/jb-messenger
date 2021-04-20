@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+
 const isDev = process.env.NODE_ENV === 'development'
 const useEmulators = false // manually change if emulators needed
 export default {
@@ -10,13 +13,32 @@ export default {
       {hid: 'description', name: 'description', content: ''}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+    ],
+    script: [
+      {src: "https://static.line-scdn.net/liff/edge/2/sdk.js"}
     ]
   },
+
+  ssr: false,
 
   loading: {
     color: 'blue',
     height: '5px'
+  },
+
+  env: {
+    clientUrl: isDev ? 'https://localhost:3000': '',
+    apiUrl: 'https://us-central1-my-scheduling-52f1e.cloudfunctions.net',
+    liffId: process.env.LIFF_ID
+  },
+
+  server: {
+    port: 3000,
+    https: {
+      key: fs.readFileSync(path.resolve(__dirname, "localhost-key.pem")),
+      cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem"))
+    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -32,10 +54,12 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/liff',
+    '@/plugins/client-init',
     '@/plugins/my-auth',
-    '@/plugins/api'
+    '@/plugins/api',
+    // {src: '@/plugins/my-auth/client-only', mode: 'client'},
   ],
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -72,30 +96,7 @@ export default {
       },
       firestore: {
         memoryOnly: false,
-        // enablePersistence: true,
-        // emulatorPort: isDev && useEmulators ? 8080 : undefined,
       },
-      // functions: {
-      //   emulatorPort: isDev && useEmulators ? 12345 : undefined,
-      // },
-      // storage: true,
-      // database: {
-      //   emulatorPort: isDev && useEmulators ? 9000 : undefined,
-      // },
-      // performance: true,
-      // analytics: true,
-      // remoteConfig: {
-      //   settings: {
-      //     fetchTimeoutMillis: 60000,
-      //     minimumFetchIntervalMillis: 43200000,
-      //   },
-      //   defaultConfig: {
-      //     welcome_message: 'Welcome',
-      //   },
-      // },
-      // messaging: {
-      //   createServiceWorker: true,
-      // },
     },
   },
 
@@ -108,17 +109,7 @@ export default {
   pwa: {
     meta: false,
     icon: false,
-
-    workbox: {
-      importScripts: [
-        '/firebase-auth-sw.js'
-      ],
-      // by default the workbox module will not install the service worker in dev environment to avoid conflicts with HMR
-      // only set this true for testing and remember to always clear your browser cache in development
-      dev: isDev
-    },
   },
-
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
