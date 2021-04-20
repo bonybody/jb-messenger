@@ -27,7 +27,7 @@ export default {
   },
 
   env: {
-    clientUrl: isDev ? 'https://localhost:3000': '',
+    clientUrl: isDev ? 'https://localhost:3000': process.env.VERCEL_URL,
     apiUrl: 'https://us-central1-my-scheduling-52f1e.cloudfunctions.net',
     liffId: process.env.LIFF_ID
   },
