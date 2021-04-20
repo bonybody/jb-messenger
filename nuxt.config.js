@@ -2,9 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 const isDev = process.env.NODE_ENV === 'development'
-const useEmulators = false // manually change if emulators needed
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'my-scheduling',
     meta: [
@@ -41,7 +39,6 @@ export default {
     },
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     {src: '@/assets/scss/index.scss', lang: 'scss'}
   ],
@@ -52,29 +49,22 @@ export default {
     ],
   },
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/liff',
     '@/plugins/client-init',
     '@/plugins/my-auth',
     '@/plugins/api',
-    // {src: '@/plugins/my-auth/client-only', mode: 'client'},
   ],
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/style-resources',
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/firebase'
   ],
 
   firebase: {
-    // lazy: false,
     config: {
       apiKey: process.env.API_KEY,
       authDomain: process.env.AUTH_DOMAIN,
@@ -84,8 +74,6 @@ export default {
       appId: process.env.APP_ID,
       measurementId: process.env.MEASUREMENT_ID,
     },
-    // onFirebaseHosting: false,
-    // terminateDatabasesAfterGenerate: true,
     services: {
       auth: {
         persistence: 'local',
@@ -100,17 +88,12 @@ export default {
     },
   },
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
-  // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     meta: false,
     icon: false,
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
 }

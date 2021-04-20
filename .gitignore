@@ -91,3 +91,14 @@ sw.*
 
 # lock files
 package-lock.json
+
+localhost-key.pem
+localhost.pem
+
+# firebase
+.firebaserc
+firebase.json
+static/firebase-auth-sw.js
+
+# vercel
+vercel.json

@@ -18,7 +18,7 @@
 import FormFrame from "@/components/atoms/frames/FormFrame";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import AppHeading from "@/components/atoms/heading/AppHeading";
-import dateFormat from "@/functions/date-format"
+import dateFormat from "@/my-functions/date-format"
 
 export default {
   name: "SchedulePreview",

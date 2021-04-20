@@ -13,7 +13,7 @@
       <nav class="header__nav">
         <ul v-show="!$myAuth.loggedIn()">
           <li>
-            <app-button :mini="true" :to="'login'">ログイン</app-button>
+            <app-button :mini="true" @click="login">ログイン</app-button>
           </li>
           <li>
             <app-button :second="true" :mini="true" :to="'sign-up'">新規登録</app-button>
@@ -47,9 +47,6 @@ export default {
       menuState: false
     }
   },
-  // mounted() {
-  //   console.log('aaa:', this.isLoggedIn)
-  // },
   computed: {
     ...mapState({
       authUser: (state) => state.authUser,
@@ -59,6 +56,13 @@ export default {
     }),
   },
   methods: {
+    login: async function () {
+      try {
+        await this.$myAuth.loginByLine()
+      } catch (e) {
+        this.$nuxt.error(e.message)
+      }
+    },
     logout: async function () {
       try {
         const res = await this.$myAuth.logout()
