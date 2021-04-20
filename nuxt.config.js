@@ -93,6 +93,9 @@ export default {
   pwa: {
     meta: false,
     icon: false,
+    importScripts: [
+      '/firebase-auth-sw.js'
+    ],
   },
 
   build: {}
