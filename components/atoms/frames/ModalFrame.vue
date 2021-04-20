@@ -4,9 +4,7 @@
     'not-active': !active
        }"
   >
-    <div class="frame__content">
-      <slot></slot>
-    </div>
+    <slot></slot>
     <div class="margin-area" @click="$emit('click')"></div>
   </div>
 </template>
@@ -25,20 +23,16 @@ export default {
 
 <style scoped lang="scss">
 .frame {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
-  z-index: 1000;
+  z-index: $modal-content-z-index;
   top: 0;
   right: 0;
   transition: $transition;
-
-  &__content {
-    z-index: 1001;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .not-active {
@@ -47,6 +41,8 @@ export default {
 }
 
 .margin-area {
+  top: 0;
+  right: 0;
   position: absolute;
   background-color: $modal-background-color;
   opacity: 0.9;

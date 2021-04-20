@@ -1,5 +1,5 @@
-export default function ({$fire, redirect, store, $liff, $router}, inject) {
-  const myAuth = new MyAuth($fire, redirect, store, $liff, $router)
+export default function ({$fire, redirect, store, $liff, app}, inject) {
+  const myAuth = new MyAuth($fire, redirect, store, $liff, app.router)
   inject('myAuth', myAuth)
 }
 
@@ -27,15 +27,13 @@ class MyAuth {
   }
 
   loginByLine() {
-    return this.liff.login({
-      redirectUri: process.env.clientUrl + '/home'
-    });
+    return this.liff.login();
   }
 
   logout() {
     this.liff.logout()
     this.fire.auth.signOut()
-    this.redirect('/')
+    this.router.push('/')
   }
 
   getUser() {
@@ -46,6 +44,7 @@ class MyAuth {
   loggedIn() {
     return Boolean(this.liff.isLoggedIn())
   }
+
   getToken() {
     return this.auth.strategy.token.get()
   }

@@ -1,13 +1,15 @@
 <template>
-  <div class="wrap">
+  <div class="form">
     <form-frame>
-      <div class="wrap__heading">
+      <div class="form__line form__line--heading">
         <app-heading :size="'semi-large'">スケジュール登録</app-heading>
       </div>
-      <form class="form" @submit.prevent="post">
+      <div class="form__section">
         <div class="form__line">
           <app-error-message>{{ err }}</app-error-message>
         </div>
+      </div>
+      <form class="form__section" @submit.prevent="post">
         <div class="form__line">
           <normal-form-section v-model="title" :type="'text'" :name="'title'">
             <template v-slot:label>タイトル</template>
@@ -23,7 +25,7 @@
             <template v-slot:label>概要</template>
           </normal-form-section>
         </div>
-        <div class="form__line">
+        <div class="form__line--button">
           <app-button type="submit" @submit.prevent="post">送信</app-button>
         </div>
       </form>
@@ -67,15 +69,8 @@ const nowDate = () => {
 </script>
 
 <style scoped lang="scss">
-.wrap {
-  &__heading {
-    margin-bottom: $semi-large-margin;
-  }
-}
+@import "form-mixin";
 
-.form {
-  &__line {
-    margin-bottom: $semi-large-margin;
-  }
-}
+@include form;
+
 </style>

@@ -29,7 +29,7 @@ export default {
   env: {
     clientUrl: isDev ? 'https://localhost:3000': process.env.VERCEL_DOMAIN,
     apiUrl: 'https://us-central1-my-scheduling-52f1e.cloudfunctions.net',
-    liffId: process.env.LIFF_ID
+    liffId: isDev ? process.env.LIFF_ID_DEV : process.env.LIFF_ID
   },
 
   server: isDev ? {
@@ -51,7 +51,7 @@ export default {
   },
 
   plugins: [
-    '@/plugins/liff',
+    // '@/plugins',
     '@/plugins/client-init',
     '@/plugins/my-auth',
     '@/plugins/api',
@@ -81,7 +81,6 @@ export default {
         initialize: {
           onAuthStateChangedAction: 'onAuthStateChanged',
         },
-        ssr: true,
       },
       firestore: {
         memoryOnly: false,
