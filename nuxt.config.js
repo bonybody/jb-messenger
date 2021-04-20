@@ -31,13 +31,13 @@ export default {
     liffId: process.env.LIFF_ID
   },
 
-  server: {
+  server: isDev ? {
     port: 3000,
     https: {
       key: fs.readFileSync(path.resolve(__dirname, "localhost-key.pem")),
-      cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem"))
-    },
-  },
+      cert: fs.readFileSync(path.resolve(__dirname, "localhost.pem")),
+    }
+  } : false,
 
   css: [
     {src: '@/assets/scss/index.scss', lang: 'scss'}
