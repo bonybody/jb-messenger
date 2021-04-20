@@ -19,6 +19,7 @@ export default {
   },
 
   ssr: false,
+  target: 'static',
 
   loading: {
     color: 'blue',
