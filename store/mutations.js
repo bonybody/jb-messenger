@@ -7,8 +7,9 @@ export default {
 
   SET_AUTH_USER: (state, {authUser}) => {
     state.authUser = {
-      uid: authUser.uid,
-      email: authUser.email
+      uid: authUser.id,
+      display_name: authUser.data().display_name,
+      pictureUrl: authUser.data().pictureUrl
     }
   },
 }

@@ -40,7 +40,6 @@ import NormalFormSection from "@/components/molecules/forms/NormalFormSection";
 import AppErrorMessage from "@/components/atoms/errors/AppErrorMessage";
 import AppTextLink from "@/components/atoms/links/AppTextLink";
 
-
 export default {
   name: "LoginForm",
   components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame, AppInput, AppButton},
@@ -55,7 +54,7 @@ export default {
   methods: {
     async login() {
       try {
-        const res = await this.$myAuth.loginByEmail(this.email, this.password)
+        await this.$myAuth.loginByLine()
       } catch (e) {
         this.err = e.message
       }

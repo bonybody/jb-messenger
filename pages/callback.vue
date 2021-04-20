@@ -1,11 +1,13 @@
 <template>
-  <div></div>
+
 </template>
 
 <script>
 export default {
-  name: "index",
-  middleware: 'guest'
+  name: "callback",
+  created() {
+    this.$rouer.push('home')
+  }
 }
 </script>
 

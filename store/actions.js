@@ -12,7 +12,7 @@ export default {
     }
   },
 
-  async onAuthStateChanged({ commit, dispatch }, { authUser, claims }) {
+  async onAuthStateChanged({ commit, dispatch, $fire }, {authUser, claims }) {
     if (!authUser) {
       commit('RESET_STORE')
       return
@@ -24,7 +24,9 @@ export default {
       } catch (e) {
       }
     }
-    commit('SET_AUTH_USER', { authUser })
+    const user = await this.$fire.firestore.collection('users').doc(authUser.uid).get()
+
+    commit('SET_AUTH_USER', { authUser: user })
   },
 
   checkVuexStore(ctx) {

@@ -5,5 +5,8 @@ export default {
     } catch {
       return false
     }
+  },
+  getAuthUser: (state) => {
+    return state.authUser
   }
 }
