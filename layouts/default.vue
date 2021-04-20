@@ -6,20 +6,20 @@
     <main>
       <Nuxt/>
     </main>
-      <div class="button" v-if="$myAuth.loggedIn()">
-        <app-button
-            :second="true"
-            :circle="true"
-            @click="changeModalState"
-        ><span class="button__text">+</span></app-button>
-      </div>
-      <div class="modal__content" v-if="$myAuth.loggedIn()">
-        <modal-frame :active="modalState" @click="changeModalState">
-          <div class="modal__form">
-            <schedule-form/>
-          </div>
-        </modal-frame>
-      </div>
+    <div class="button" v-if="$myAuth.loggedIn()">
+      <app-button
+          :second="true"
+          :circle="true"
+          @click="changeModalState"
+      ><span class="button__text">+</span></app-button>
+    </div>
+    <div class="modal__content" v-if="$myAuth.loggedIn()">
+      <modal-frame :active="modalState" @click="changeModalState">
+        <div class="modal__form">
+          <schedule-form/>
+        </div>
+      </modal-frame>
+    </div>
   </div>
 </template>
 <script>
@@ -44,9 +44,6 @@ export default {
     changeModalState() {
       this.modalState = !this.modalState
     }
-  },
-  mounted() {
-    console.log(this.$myAuth.loggedIn())
   }
 }
 </script>
