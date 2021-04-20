@@ -15,9 +15,6 @@
           <li>
             <app-button :mini="true" @click="login">ログイン</app-button>
           </li>
-          <li>
-            <app-button :second="true" :mini="true" :to="'sign-up'">新規登録</app-button>
-          </li>
         </ul>
         <ul v-show="$myAuth.loggedIn()">
           <li class="global-nav__toggle">

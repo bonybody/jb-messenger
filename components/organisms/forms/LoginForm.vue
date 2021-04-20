@@ -65,5 +65,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "form-mixin";
 @include form;
 </style>

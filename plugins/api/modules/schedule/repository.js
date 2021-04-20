@@ -5,7 +5,7 @@ export default class ScheduleRepository {
   }
 
   getSchedulesByNew() {
-    return this.firestore.collection('schedules').get()
+    return this.firestore.collection('schedules').where('user_id', '==', this.fire.auth.currentUser.uid).get()
       .then((querySnapshot) => {
         const schedules = []
         querySnapshot.forEach(function (doc) {
