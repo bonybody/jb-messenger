@@ -12,6 +12,7 @@ import NewSchedules from "@/components/organisms/schedules/NewSchedules";
 
 export default {
   components: {NewSchedules, ScheduleForm},
+  middleware: 'auth'
 }
 </script>
 
