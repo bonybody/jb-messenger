@@ -4,11 +4,14 @@ import path from 'path'
 const isDev = process.env.NODE_ENV === 'development'
 export default {
   head: {
-    title: 'my-scheduling',
+    title: 'JB MESSENGER',
+    htmlAttrs: {
+      lang: 'ja'
+    },
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: ''}
+      {hid: 'description', name: 'description', content: '登録したスケジュールの日程直前でLINE通知を送ってくれます。'}
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
@@ -27,7 +30,7 @@ export default {
   },
 
   env: {
-    clientUrl: isDev ? 'https://localhost:3000': process.env.VERCEL_DOMAIN,
+    clientUrl: isDev ? 'https://localhost:3000' : process.env.VERCEL_DOMAIN,
     apiUrl: 'https://us-central1-my-scheduling-52f1e.cloudfunctions.net',
     liffId: isDev ? process.env.LIFF_ID_DEV : process.env.LIFF_ID
   },
