@@ -17,7 +17,7 @@
         </div>
         <div class="form__line">
           <normal-form-section v-model="datetime" :type="'datetime-local'" name="datetime">
-            <template v-slot:label>日時</template>
+            <template v-slot:label>日時 <span style="font-size: 0.8em">約5分前に通知されます。</span></template>
           </normal-form-section>
         </div>
         <div class="form__line">
@@ -26,7 +26,7 @@
           </normal-form-section>
         </div>
         <div class="form__line--button">
-          <app-button type="submit" @submit.prevent="post">送信</app-button>
+          <app-button type="submit" @submit.prevent="post" :disabled="disabled">送信</app-button>
         </div>
       </form>
     </form-frame>
@@ -48,12 +48,20 @@ export default {
       err: '',
       datetime: nowDate(),
       title: '',
-      text: ''
+      text: '',
+      disabled: false
     }
   },
   methods: {
-    post: function () {
-      console.log(this.date)
+    post: async function () {
+      this.disabled = true
+      const res = await this.$api['schedule'].postSchedule(
+          this.title,
+          this.text,
+          this.$dateHandler.toDate(this.datetime)
+      )
+      console.log(res)
+      await this.$router.push('schedule/' + res)
     }
   }
 }

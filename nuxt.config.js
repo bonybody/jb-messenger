@@ -44,7 +44,7 @@ export default {
   } : false,
 
   css: [
-    {src: '@/assets/scss/index.scss', lang: 'scss'}
+    {src: '@/assets/scss/index.scss', lang: 'scss'},
   ],
   styleResources: {
     scss: [
@@ -58,7 +58,8 @@ export default {
     '@/plugins/client-init',
     '@/plugins/my-auth',
     '@/plugins/api',
-    '@/plugins/date-handler'
+    '@/plugins/date-handler',
+    '@/plugins/sanitize'
   ],
   components: true,
 
