@@ -1,8 +1,13 @@
+const admin = require('firebase-admin')
+const functions = require('firebase-functions')
+const express = require('express')
 const axios = require('axios')
 
-module.exports = function ({admin, express, functions}) {
 
-  express.get('/custom_token', async (req, res) => {
+module.exports = function () {
+  const router = express.Router()
+
+  router.get('/custom_token', async (req, res) => {
       const query = req.query
       const accessToken = query.accessToken
       const lineChannelId = functions.config().line.login.channel_id
@@ -56,4 +61,6 @@ module.exports = function ({admin, express, functions}) {
       }
     }
   )
+
+  return router
 }
