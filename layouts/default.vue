@@ -35,11 +35,6 @@ export default {
       modalState: false
     }
   },
-  computed: {
-    loggedIn() {
-      return this.$myAuth.loggedIn()
-    }
-  },
   methods: {
     changeModalState() {
       this.modalState = !this.modalState

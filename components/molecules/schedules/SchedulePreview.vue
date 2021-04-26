@@ -18,7 +18,6 @@
 import FormFrame from "@/components/atoms/frames/FormFrame";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import AppHeading from "@/components/atoms/heading/AppHeading";
-import dateFormat from "@/my-functions/date-format"
 
 export default {
   name: "SchedulePreview",
@@ -39,8 +38,7 @@ export default {
   },
   computed: {
     getDate() {
-      const myDate = dateFormat(this.datetime.seconds)
-      return myDate
+      return  this.$dateHandler.formatJapanese(this.datetime.toDate())
     }
   }
 }
