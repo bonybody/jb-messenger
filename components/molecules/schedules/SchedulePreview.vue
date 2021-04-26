@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="schedule__link">
-        <app-button :mini="true">詳細</app-button>
+        <app-button :mini="true" :to="'schedule/' + id">詳細</app-button>
       </div>
     </section>
   </form-frame>
@@ -18,12 +18,15 @@
 import FormFrame from "@/components/atoms/frames/FormFrame";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import AppHeading from "@/components/atoms/heading/AppHeading";
-import dateFormat from "@/my-functions/date-format"
 
 export default {
   name: "SchedulePreview",
   components: {AppHeading, AppButton, FormFrame},
   props: {
+    id: {
+      type: String,
+      require: true
+    },
     title: {
       type: String,
       require: true
@@ -33,14 +36,13 @@ export default {
       require: true
     },
     datetime: {
-      type: Object,
+      type: Date,
       require: true
     },
   },
   computed: {
     getDate() {
-      const myDate = dateFormat(this.datetime.seconds)
-      return myDate
+      return  this.$dateHandler.formatJapanese(this.datetime)
     }
   }
 }

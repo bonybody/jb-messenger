@@ -37,12 +37,12 @@ class MyAuth {
   }
 
   getUser() {
-    return this.store.getters.getAuthUser;
+    return this.fire.auth.currentUser;
   }
 
 
   loggedIn() {
-    return Boolean(this.liff.isLoggedIn())
+    return Boolean(this.fire.auth.currentUser)
   }
 
   getToken() {

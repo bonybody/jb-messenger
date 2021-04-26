@@ -14,10 +14,10 @@ export default {
       {hid: 'description', name: 'description', content: '登録したスケジュールの日程直前でLINE通知を送ってくれます。'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.svg'},
     ],
     script: [
-      {src: "https://static.line-scdn.net/liff/edge/2/sdk.js"}
+      {src: "https://static.line-scdn.net/liff/edge/2/sdk.js"},
     ]
   },
 
@@ -31,7 +31,7 @@ export default {
 
   env: {
     clientUrl: isDev ? 'https://localhost:3000' : process.env.VERCEL_DOMAIN,
-    apiUrl: 'https://us-central1-my-scheduling-52f1e.cloudfunctions.net',
+    apiUrl: 'https://asia-northeast1-my-scheduling-52f1e.cloudfunctions.net',
     liffId: isDev ? process.env.LIFF_ID_DEV : process.env.LIFF_ID
   },
 
@@ -44,7 +44,7 @@ export default {
   } : false,
 
   css: [
-    {src: '@/assets/scss/index.scss', lang: 'scss'}
+    {src: '@/assets/scss/index.scss', lang: 'scss'},
   ],
   styleResources: {
     scss: [
@@ -58,6 +58,8 @@ export default {
     '@/plugins/client-init',
     '@/plugins/my-auth',
     '@/plugins/api',
+    '@/plugins/date-handler',
+    '@/plugins/sanitize'
   ],
   components: true,
 
@@ -81,9 +83,9 @@ export default {
     services: {
       auth: {
         persistence: 'local',
-        initialize: {
-          onAuthStateChangedAction: 'onAuthStateChanged',
-        },
+        // initialize: {
+        //   onAuthStateChangedAction: 'onAuthStateChanged',
+        // },
       },
       firestore: {
         memoryOnly: false,

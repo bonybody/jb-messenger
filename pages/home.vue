@@ -7,11 +7,10 @@
 </template>
 
 <script>
-import ScheduleForm from "@/components/organisms/forms/ScheduleForm";
-import NewSchedules from "@/components/organisms/schedules/NewSchedules";
+import NewSchedules from "@/components/organisms/schedulePreviews/NewSchedules";
 
 export default {
-  components: {NewSchedules, ScheduleForm},
+  components: {NewSchedules},
   middleware: 'auth'
 }
 </script>

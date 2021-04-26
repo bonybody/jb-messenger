@@ -1,9 +1,9 @@
 import liff from "@/plugins/liff";
 
-export default async function ({redirect, store, $fire, $axios}, inject) {
+export default async function ({redirect, store, $fire, $axios, $nuxt}, inject) {
   await liff.init({liffId: process.env.liffId}).then(async () => {
     inject('liff', liff)
-    if (liff.isLoggedIn() && !store.getters.isLoggedIn) {
+    if (liff.isLoggedIn() && !$fire.auth.isLoggedIn) {
       // liffのuIdを取得
       const accessToken = await liff.getAccessToken()
       const baseUrl = process.env.apiUrl + '/api/custom_token'
