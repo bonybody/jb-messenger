@@ -58,6 +58,7 @@ export default {
     '@/plugins/client-init',
     '@/plugins/my-auth',
     '@/plugins/api',
+    '@/plugins/date-handler'
   ],
   components: true,
 
