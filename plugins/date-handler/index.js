@@ -16,4 +16,8 @@ class DateHandler {
   formatJapanese(date) {
     return this.dayjs(date).format('YYYY年MM月D日H時m分')
   }
+
+  toDate(str) {
+    return this.dayjs(str).toDate()
+  }
 }

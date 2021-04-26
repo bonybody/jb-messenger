@@ -1,5 +1,8 @@
 <template>
   <div class="schedules">
+    <div v-show="$fetchState.pending" class="schedules__loading">
+      <app-loading-icon></app-loading-icon>
+    </div>
     <template v-for="schedule in schedules">
       <div class="schedules__schedule">
         <schedule-preview
@@ -15,33 +18,33 @@
 
 <script>
 import SchedulePreview from "@/components/molecules/schedules/SchedulePreview";
+import AppLoadingIcon from "@/components/atoms/icons/AppLoadingIcon";
 
 export default {
   name: "NewSchedules",
-  components: {SchedulePreview},
+  components: {AppLoadingIcon, SchedulePreview},
   async fetch() {
     try {
-      this.schedules = await this.$api['schedule'].getSchedulesByNew()
+      await this.$nextTick(async () => {
+        this.$nuxt.$loading.start()
+        this.schedules = await this.$api['schedule'].getSchedulesByNew()
+        this.$nuxt.$loading.finish()
+      })
     } catch (e) {
       console.log(e.message)
     }
   },
   data() {
     return {
-      schedules: []
+      schedules: [],
     }
-  }
+  },
 }
 </script>
 
 <style scoped lang="scss">
-.schedules {
-  display: flex;
-  flex-flow: column;
-  &__schedule {
-    margin-bottom: $medium-margin;
-  }
+@import "schedules-mixin";
 
-}
+@include schedules-mixin();
 
 </style>

@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="schedule__link">
-        <app-button :mini="true">詳細</app-button>
+        <app-button :mini="true" :to="'schedule/' + id">詳細</app-button>
       </div>
     </section>
   </form-frame>
@@ -23,6 +23,10 @@ export default {
   name: "SchedulePreview",
   components: {AppHeading, AppButton, FormFrame},
   props: {
+    id: {
+      type: String,
+      require: true
+    },
     title: {
       type: String,
       require: true
@@ -32,13 +36,13 @@ export default {
       require: true
     },
     datetime: {
-      type: Object,
+      type: Date,
       require: true
     },
   },
   computed: {
     getDate() {
-      return  this.$dateHandler.formatJapanese(this.datetime.toDate())
+      return  this.$dateHandler.formatJapanese(this.datetime)
     }
   }
 }

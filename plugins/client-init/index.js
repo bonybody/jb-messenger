@@ -1,6 +1,6 @@
 import liff from "@/plugins/liff";
 
-export default async function ({redirect, store, $fire, $axios}, inject) {
+export default async function ({redirect, store, $fire, $axios, $nuxt}, inject) {
   await liff.init({liffId: process.env.liffId}).then(async () => {
     inject('liff', liff)
     if (liff.isLoggedIn() && !$fire.auth.isLoggedIn) {
