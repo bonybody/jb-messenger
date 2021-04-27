@@ -78,7 +78,10 @@ export default {
         id = await this.post()
       }
       this.disabled = false
-      await this.$router.push('/schedule/' + id)
+      if (id) {
+        await this.$router.push('/schedule/' + id)
+        this.$emit('success')
+      }
     },
 
     post: async function () {

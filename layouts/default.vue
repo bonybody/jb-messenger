@@ -29,7 +29,7 @@
     <div class="modal__content" v-if="$myAuth.loggedIn()">
       <modal-frame :active="modalState" @click="changeModalState">
         <div class="modal__form">
-          <schedule-form/>
+          <schedule-form @success="changeModalState"/>
         </div>
       </modal-frame>
     </div>
