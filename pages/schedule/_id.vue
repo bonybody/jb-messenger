@@ -1,16 +1,30 @@
 <template>
   <div class="schedule">
-    <schedule-details :id="$route.params.id" />
+    <div class="schedule__heading">
+      <app-heading size="semi-large">スケジュール詳細</app-heading>
+    </div>
+    <div class="schedule__content">
+      <schedule-details :id="$route.params.id"/>
+    </div>
   </div>
 </template>
 
 <script>
 import ScheduleDetails from "@/components/organisms/ScheduleDetails";
+import AppHeading from "@/components/atoms/heading/AppHeading";
+
 export default {
-  components: {ScheduleDetails}
+  components: {AppHeading, ScheduleDetails}
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.schedule {
+  max-width: 400px;
+  margin: 0 auto;
 
+  &__heading {
+    margin-bottom: $medium-margin;
+  }
+}
 </style>

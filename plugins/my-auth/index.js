@@ -33,7 +33,7 @@ class MyAuth {
   logout() {
     this.liff.logout()
     this.fire.auth.signOut()
-    this.router.push('/')
+    return window.location.href = process.env.clientUrl + '/'
   }
 
   getUser() {
