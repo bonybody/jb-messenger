@@ -1,6 +1,7 @@
 <template>
   <textarea
       :name="name"
+      v-model="inputValue"
   >
   </textarea>
 </template>
@@ -12,8 +13,23 @@ export default {
     name: {
       type: String,
       require: true
+    },
+    value: {
+      type: String,
+      require: true
+    }
+  },
+  computed: {
+    inputValue: {
+      get() {
+        return this.value
+      },
+      set(value) {
+        this.$emit('input', value)
+      }
     }
   }
+
 }
 </script>
 

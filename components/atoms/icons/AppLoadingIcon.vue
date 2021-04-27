@@ -13,6 +13,7 @@ name: "AppLoadingIcon"
 <style scoped lang="scss">
 @include loading-animation();
 .loading-animation {
+  margin-top: $semi-large-margin;
   display: inline-block;
 }
 </style>

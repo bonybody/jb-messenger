@@ -20,4 +20,8 @@ class DateHandler {
   toDate(str) {
     return this.dayjs(str).toDate()
   }
+
+  toDateTimeLocal(date) {
+    return this.dayjs(date).format(`YYYY-MM-DDTHH:mm:00`)
+  }
 }
