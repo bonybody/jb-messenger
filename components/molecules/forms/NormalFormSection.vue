@@ -8,7 +8,7 @@
       </app-heading>
     </div>
     <div class="section__form">
-      <app-text-area v-if="type === 'textarea'" :placeholder="placeholder" :name="name"></app-text-area>
+      <app-text-area v-if="type === 'textarea'" :placeholder="placeholder" :name="name" v-model="inputValue"></app-text-area>
       <app-input v-else :type="type" :placeholder="placeholder" :name="name" v-model="inputValue" :id="name">
       </app-input>
     </div>

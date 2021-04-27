@@ -27,16 +27,15 @@ export default class Schedule {
   async getSchedulesByNew() {
     const schedules = []
     try {
-      const res = await this.firestore.collection('schedules').where('user_id', '==', this.fire.auth.currentUser.uid).get()
+      const res = await this.firestore.collection('schedules').where('user_id', '==', this.fire.auth.currentUser.uid).orderBy('datetime').get()
       res.forEach(function (doc) {
         schedules.push(this.resScheduleFormat(doc))
       }.bind(this))
+      return schedules
     } catch (e) {
       console.error(e)
       return false
     }
-
-    return schedules
   }
 
   async postSchedule(title, text, datetime) {
@@ -49,6 +48,33 @@ export default class Schedule {
         user_id: this.fire.auth.currentUser.uid,
       })
       return doc.id
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  }
+
+  async editSchedule(id, title, text, datetime) {
+    try {
+      const doc = await this.firestore.collection('schedules').doc(id)
+      await doc.update({
+        title,
+        text,
+        datetime,
+        user_id: this.fire.auth.currentUser.uid,
+      })
+      return doc.id
+    } catch (e) {
+      console.error(e)
+      return false
+    }
+  }
+
+  async deleteSchedule(id) {
+    try {
+      const doc = await this.firestore.collection('schedules').doc(id)
+      await doc.delete()
+      return true
     } catch (e) {
       console.error(e)
       return false

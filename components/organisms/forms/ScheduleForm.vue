@@ -2,14 +2,14 @@
   <div class="form">
     <form-frame>
       <div class="form__line form__line--heading">
-        <app-heading :size="'semi-large'">スケジュール登録</app-heading>
+        <app-heading :size="'semi-large'">スケジュール管理</app-heading>
       </div>
       <div class="form__section">
         <div class="form__line">
           <app-error-message>{{ err }}</app-error-message>
         </div>
       </div>
-      <form class="form__section" @submit.prevent="post">
+      <form class="form__section" @submit.prevent="send">
         <div class="form__line">
           <normal-form-section v-model="title" :type="'text'" :name="'title'">
             <template v-slot:label>タイトル</template>
@@ -26,7 +26,7 @@
           </normal-form-section>
         </div>
         <div class="form__line--button">
-          <app-button type="submit" @submit.prevent="post" :disabled="disabled">送信</app-button>
+          <app-button type="submit" :disabled="disabled">送信</app-button>
         </div>
       </form>
     </form-frame>
@@ -43,37 +43,63 @@ import AppButton from "@/components/atoms/buttons/AppButton";
 export default {
   name: "ScheduleForm",
   components: {AppButton, NormalFormSection, AppErrorMessage, AppHeading, FormFrame},
+  async fetch() {
+    if (this.id !== null) {
+      const data = await this.$api['schedule'].getScheduleById(this.id)
+      this.title = data.title
+      this.text = data.text
+      this.datetime = this.$dateHandler.toDateTimeLocal(data.datetime)
+    } else {
+      this.datetime = this.$dateHandler.toDateTimeLocal(new Date())
+    }
+  },
+  props: {
+    id: {
+      type: String,
+      default: null
+    },
+  },
   data() {
     return {
       err: '',
-      datetime: nowDate(),
+      datetime: '',
       title: '',
       text: '',
       disabled: false
     }
   },
   methods: {
-    post: async function () {
+    send: async function () {
       this.disabled = true
-      const res = await this.$api['schedule'].postSchedule(
+      let id = null
+      if (this.id !== null) {
+        id = await this.edit()
+      } else {
+        id = await this.post()
+      }
+      this.disabled = false
+      await this.$router.push('/schedule/' + id)
+    },
+
+    post: async function () {
+      return await this.$api['schedule'].postSchedule(
           this.title,
           this.text,
           this.$dateHandler.toDate(this.datetime)
       )
-      console.log(res)
-      await this.$router.push('schedule/' + res)
+    },
+
+    edit: async function () {
+      return await this.$api['schedule'].editSchedule(
+          this.id,
+          this.title,
+          this.text,
+          this.$dateHandler.toDate(this.datetime)
+      )
     }
   }
 }
 
-const nowDate = () => {
-  const today = new Date()
-  today.setDate(today.getDate() + 1)
-  const yyyy = today.getFullYear()
-  const mm = ('0' + (today.getMonth() + 1)).slice(-2)
-  const dd = ('0' + today.getDate()).slice(-2)
-  return `${yyyy}-${mm}-${dd}T00:00`
-}
 </script>
 
 <style scoped lang="scss">

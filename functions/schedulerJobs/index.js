@@ -36,7 +36,7 @@ module.exports = functions.pubsub.schedule('every 1 minutes')
           datetime: formatedDatetime
         })
 
-        await client.pushMessage(doc.data().user.id, {
+        await client.pushMessage(doc.data().user_id, {
           type: "flex",
           altText: doc.data().title + 'の直前です',
           contents: message

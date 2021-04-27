@@ -2,7 +2,7 @@
   <div class="wrap"
        :class="{ 'wrap--active': active, 'wrap--not-active': !active }"
   >
-    <nav class="global-nav" :class="{'active': active, 'not-active': !active}">
+    <nav class="global-nav" :class="{'not-active': !active}">
       <ul class="menus">
         <template v-for="(menu, index) in menus">
           <li :key="index" class="menus__menu">
@@ -43,16 +43,6 @@ export default {
           id: 1,
           name: 'ホーム',
           path: '/home',
-        },
-        {
-          id: 2,
-          name: 'マイページ',
-          path: '/mypage',
-        },
-        {
-          id: 3,
-          name: 'ログアウト',
-          path: '/logout'
         }
       ]
     }
@@ -76,9 +66,6 @@ export default {
   top: 0;
   right: 0;
   transition: 0.3s all;
-
-  &--active {
-  }
 
   &--not-active {
     visibility: hidden;

@@ -115,6 +115,10 @@ button {
   border-radius: 1000px;
 }
 
+.danger {
+  color: $on-font-color;
+  background-color: $danger-color;
+}
 @keyframes anim_sc {
   50% {
     filter: brightness(120%);
