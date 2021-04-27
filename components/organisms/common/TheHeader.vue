@@ -4,7 +4,7 @@
       <h1>
         <app-heading :size="'large'">
           <nuxt-link :to="'/'">
-            ZUBORA Scheduler
+            JB MESSENGER
           </nuxt-link>
         </app-heading>
       </h1>
