@@ -62,7 +62,7 @@ export default {
     '@/plugins/sanitize',
     '@/plugins/global-dialog',
   ],
-  components: true,
+  components: false,
 
   modules: [
     '@nuxtjs/style-resources',
