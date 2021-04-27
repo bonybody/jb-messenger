@@ -54,12 +54,13 @@ export default {
   },
 
   plugins: [
-    // '@/plugins',
+    '@/plugins/composition-api',
     '@/plugins/client-init',
     '@/plugins/my-auth',
     '@/plugins/api',
     '@/plugins/date-handler',
-    '@/plugins/sanitize'
+    '@/plugins/sanitize',
+    '@/plugins/global-dialog',
   ],
   components: true,
 
@@ -83,9 +84,6 @@ export default {
     services: {
       auth: {
         persistence: 'local',
-        // initialize: {
-        //   onAuthStateChangedAction: 'onAuthStateChanged',
-        // },
       },
       firestore: {
         memoryOnly: false,
@@ -94,11 +92,6 @@ export default {
   },
 
   axios: {},
-
-  pwa: {
-    meta: false,
-    icon: false,
-  },
 
   build: {}
 }

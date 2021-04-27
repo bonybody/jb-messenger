@@ -4,38 +4,38 @@
       <app-loading-icon/>
     </div>
     <form-frame v-show="title !== null">
-        <div class="schedule__section">
-          <div class="schedule__label">
-            <app-heading size="semi-large">タイトル</app-heading>
-          </div>
-          <div class="schedule__content">
-            {{ title }}
-          </div>
+      <div class="schedule__section">
+        <div class="schedule__label">
+          <app-heading size="semi-large">タイトル</app-heading>
         </div>
-        <div class="schedule__section">
-          <div class="schedule__label">
-            <app-heading size="semi-large">
-              日時 <span style="font-size: 0.8em">約5分前に通知されます。</span>
-            </app-heading>
-          </div>
-          <div class="schedule__content">
-            {{ datetime }}
-          </div>
+        <div class="schedule__content">
+          {{ title }}
         </div>
-        <div class="schedule__section">
-          <div class="schedule__label">
-            <app-heading size="semi-large">
-              概要
-            </app-heading>
-          </div>
-          <div class="schedule__content"
-               v-html="$sanitize(getText)">
-          </div>
+      </div>
+      <div class="schedule__section">
+        <div class="schedule__label">
+          <app-heading size="semi-large">
+            日時 <span style="font-size: 0.8em">約5分前に通知されます。</span>
+          </app-heading>
         </div>
-        <div class="schedule__section schedule__section--multi-column">
-          <app-button :to="'/schedule/edit/' + this.id" :mini="true">編集</app-button>
-          <app-button @click="onDelete" :mini="true" :danger="true">削除</app-button>
+        <div class="schedule__content">
+          {{ datetime }}
         </div>
+      </div>
+      <div class="schedule__section">
+        <div class="schedule__label">
+          <app-heading size="semi-large">
+            概要
+          </app-heading>
+        </div>
+        <div class="schedule__content"
+             v-html="$sanitize(getText)">
+        </div>
+      </div>
+      <div class="schedule__section schedule__section--multi-column">
+        <app-button :to="'/schedule/edit/' + this.id" :mini="true">編集</app-button>
+        <app-button @click="onDelete" :mini="true" :danger="true">削除</app-button>
+      </div>
     </form-frame>
   </div>
 </template>
@@ -69,14 +69,17 @@ export default {
     }
   },
   methods: {
-    onDelete: async function () {
-      await this.$api['schedule'].deleteSchedule(this.id)
-      await this.$router.push('/')
+    onDelete: function () {
+      this.$globalDialog.showDialog('削除します', '本当によろしいですか？',
+          async () => {
+            await this.$api['schedule'].deleteSchedule(this.id)
+            await this.$router.push('/')
+          })
     }
   },
   computed: {
     getText() {
-      if(this.text === null) {
+      if (this.text === null) {
         return null
       } else {
         return this.text.replace(/\n/g, '<br>')

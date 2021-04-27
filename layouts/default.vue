@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <the-global-dialog
+        :state="$globalDialog.state"
+        :title="$globalDialog.title"
+        :text="$globalDialog.text"
+        :callback="$globalDialog.callback"
+    />
     <div class="header">
       <the-header/>
     </div>
@@ -20,6 +26,13 @@
         </div>
       </modal-frame>
     </div>
+    <div class="modal__content" v-if="$myAuth.loggedIn()">
+      <modal-frame :active="modalState" @click="changeModalState">
+        <div class="modal__form">
+          <schedule-form/>
+        </div>
+      </modal-frame>
+    </div>
   </div>
 </template>
 <script>
@@ -27,9 +40,10 @@ import TheHeader from "@/components/organisms/common/TheHeader";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import ModalFrame from "@/components/atoms/frames/ModalFrame";
 import ScheduleForm from "@/components/organisms/forms/ScheduleForm";
+import TheGlobalDialog from "@/components/molecules/commons/TheGlobalDialog";
 
 export default {
-  components: {ScheduleForm, ModalFrame, AppButton, TheHeader},
+  components: {TheGlobalDialog, ScheduleForm, ModalFrame, AppButton, TheHeader},
   data() {
     return {
       modalState: false
