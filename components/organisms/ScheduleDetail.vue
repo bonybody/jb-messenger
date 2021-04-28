@@ -3,7 +3,7 @@
     <div class="schedule__loading" v-show="title === null">
       <app-loading-icon/>
     </div>
-    <form-frame v-show="title !== null">
+    <app-frame v-show="title !== null">
       <div class="schedule__section">
         <div class="schedule__label">
           <app-heading size="semi-large">タイトル</app-heading>
@@ -36,19 +36,19 @@
         <app-button :to="'/schedule/edit/' + this.id" :mini="true">編集</app-button>
         <app-button @click="onDelete" :mini="true" :danger="true">削除</app-button>
       </div>
-    </form-frame>
+    </app-frame>
   </div>
 </template>
 
 <script>
-import FormFrame from "@/components/atoms/frames/FormFrame";
+import AppFrame from "@/components/atoms/frames/AppFrame";
 import AppHeading from "@/components/atoms/heading/AppHeading";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import AppLoadingIcon from "@/components/atoms/icons/AppLoadingIcon";
 
 export default {
   name: "ScheduleDetails",
-  components: {AppLoadingIcon, AppButton, AppHeading, FormFrame},
+  components: {AppLoadingIcon, AppButton, AppHeading, AppFrame},
   async fetch() {
     const res = await this.$api['schedule'].getScheduleById(this.id)
     this.title = res.title
