@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <form-frame>
+    <app-frame>
       <div class="form__line form__line--heading">
         <app-heading :size="'semi-large'">スケジュール管理</app-heading>
       </div>
@@ -29,12 +29,12 @@
           <app-button type="submit" :disabled="disabled">送信</app-button>
         </div>
       </form>
-    </form-frame>
+    </app-frame>
   </div>
 </template>
 
 <script>
-import FormFrame from "@/components/atoms/frames/FormFrame";
+import AppFrame from "@/components/atoms/frames/AppFrame";
 import AppHeading from "@/components/atoms/heading/AppHeading";
 import AppErrorMessage from "@/components/atoms/errors/AppErrorMessage";
 import NormalFormSection from "@/components/molecules/forms/NormalFormSection";
@@ -42,7 +42,7 @@ import AppButton from "@/components/atoms/buttons/AppButton";
 
 export default {
   name: "ScheduleForm",
-  components: {AppButton, NormalFormSection, AppErrorMessage, AppHeading, FormFrame},
+  components: {AppButton, NormalFormSection, AppErrorMessage, AppHeading, AppFrame},
   async fetch() {
     if (this.id !== null) {
       const data = await this.$api['schedule'].getScheduleById(this.id)

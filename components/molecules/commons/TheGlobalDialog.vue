@@ -1,7 +1,7 @@
 <template>
   <modal-frame :active="$globalDialog.state" @click="$globalDialog.closeModal()">
     <div class="dialog">
-      <form-frame>
+      <app-frame>
         <div class="dialog__line">
           <app-heading size="semi-large">{{ $globalDialog.title }}</app-heading>
         </div>
@@ -12,20 +12,20 @@
           <app-button :mini="true" @click="$globalDialog.callback">OK</app-button>
           <app-button :mini="true" :second="true" @click="$globalDialog.closeModal()">閉じる</app-button>
         </div>
-      </form-frame>
+      </app-frame>
     </div>
   </modal-frame>
 </template>
 
 <script>
 import ModalFrame from "@/components/atoms/frames/ModalFrame";
-import FormFrame from "@/components/atoms/frames/FormFrame";
+import AppFrame from "@/components/atoms/frames/AppFrame";
 import AppHeading from "@/components/atoms/heading/AppHeading";
 import AppButton from "@/components/atoms/buttons/AppButton";
 
 export default {
   name: "TheGlobalDialog",
-  components: {AppButton, AppHeading, FormFrame, ModalFrame},
+  components: {AppButton, AppHeading, AppFrame, ModalFrame},
 }
 </script>
 

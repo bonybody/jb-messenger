@@ -32,9 +32,8 @@
 </template>
 
 <script>
-import FormFrame from "~/components/atoms/frames/FormFrame";
+import AppFrame from "~/components/atoms/frames/AppFrame";
 import AppButton from "~/components/atoms/buttons/AppButton";
-import AppInput from "~/components/atoms/forms/AppInput";
 import AppHeading from "~/components/atoms/heading/AppHeading";
 import NormalFormSection from "@/components/molecules/forms/NormalFormSection";
 import AppErrorMessage from "@/components/atoms/errors/AppErrorMessage";
@@ -42,7 +41,7 @@ import AppTextLink from "@/components/atoms/links/AppTextLink";
 
 export default {
   name: "LoginForm",
-  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame, AppInput, AppButton},
+  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, AppFrame, AppButton},
   data() {
     return {
       name: '',
