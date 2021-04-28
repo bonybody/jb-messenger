@@ -4,17 +4,17 @@
       <app-heading size="semi-large">スケジュール詳細</app-heading>
     </div>
     <div class="schedule__content">
-      <schedule-details :id="$route.params.id"/>
+      <schedule-detail :id="$route.params.id"/>
     </div>
   </div>
 </template>
 
 <script>
-import ScheduleDetails from "@/components/organisms/ScheduleDetails";
+import ScheduleDetail from "@/components/organisms/ScheduleDetail";
 import AppHeading from "@/components/atoms/heading/AppHeading";
 
 export default {
-  components: {AppHeading, ScheduleDetails}
+  components: {AppHeading, ScheduleDetail}
 }
 </script>
 

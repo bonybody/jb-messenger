@@ -1,5 +1,5 @@
 <template>
-  <form-frame>
+  <app-frame>
     <section class="schedule">
       <div class="schedule__info">
         <div class="schedule__date">{{ getDate }}</div>
@@ -11,17 +11,17 @@
         <app-button :mini="true" :to="'schedule/' + id">詳細</app-button>
       </div>
     </section>
-  </form-frame>
+  </app-frame>
 </template>
 
 <script>
-import FormFrame from "@/components/atoms/frames/FormFrame";
+import AppFrame from "@/components/atoms/frames/AppFrame";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import AppHeading from "@/components/atoms/heading/AppHeading";
 
 export default {
   name: "SchedulePreview",
-  components: {AppHeading, AppButton, FormFrame},
+  components: {AppHeading, AppButton, AppFrame},
   props: {
     id: {
       type: String,

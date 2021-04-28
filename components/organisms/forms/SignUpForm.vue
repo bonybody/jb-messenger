@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <form-frame>
+    <app-frame>
       <div class="form__line form__line--heading">
         <app-heading size="large">新規登録</app-heading>
       </div>
@@ -30,12 +30,12 @@
       <div class="form__line form__line--link">
         <app-text-link :to="'login'">ログイン</app-text-link>
       </div>
-    </form-frame>
+    </app-frame>
   </div>
 </template>
 
 <script>
-import FormFrame from "~/components/atoms/frames/FormFrame";
+import AppFrame from "~/components/atoms/frames/AppFrame";
 import AppButton from "~/components/atoms/buttons/AppButton";
 import AppHeading from "~/components/atoms/heading/AppHeading";
 import NormalFormSection from "@/components/molecules/forms/NormalFormSection";
@@ -45,7 +45,7 @@ import AppTextLink from "@/components/atoms/links/AppTextLink";
 
 export default {
   name: "SignUpForm",
-  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, FormFrame, AppButton},
+  components: {AppTextLink, AppErrorMessage, NormalFormSection, AppHeading, AppFrame, AppButton},
   data() {
     return {
       name: '',

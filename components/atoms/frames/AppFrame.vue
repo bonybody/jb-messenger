@@ -6,7 +6,7 @@
 
 <script>
 export default {
-name: "FormFrame"
+name: "AppFrame"
 }
 </script>
 
