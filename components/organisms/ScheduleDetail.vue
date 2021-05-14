@@ -41,19 +41,54 @@
 </template>
 
 <script>
+
+
 import AppFrame from "@/components/atoms/frames/AppFrame";
 import AppHeading from "@/components/atoms/heading/AppHeading";
 import AppButton from "@/components/atoms/buttons/AppButton";
 import AppLoadingIcon from "@/components/atoms/icons/AppLoadingIcon";
+import {defineComponent, reactive, useFetch, computed, useContext, useRouter} from "@nuxtjs/composition-api";
 
-export default {
-  name: "ScheduleDetails",
+
+export default defineComponent({
   components: {AppLoadingIcon, AppButton, AppHeading, AppFrame},
-  async fetch() {
-    const res = await this.$api['schedule'].getScheduleById(this.id)
-    this.title = res.title
-    this.text = res.text
-    this.datetime = this.$dateHandler.formatJapanese(res.datetime)
+
+  setup(props) {
+    const router = useRouter()
+    const {$api, $dateHandler, $globalDialog} = useContext()
+    const state = reactive({})
+
+    useFetch(async () => {
+      const res = await $api['schedule'].getScheduleById(props.id)
+      state.title = res.title
+      state.text = res.text
+      state.datetime = $dateHandler.formatJapanese(res.datetime)
+    })
+
+    const onDelete = () => {
+      $globalDialog.showDialog('削除します', '本当によろしいですか？',
+          async () => {
+            await $api['schedule'].deleteSchedule(state.id)
+            await router.push('/')
+          })
+    }
+
+    const getText = () => {
+      if (this.property.text === undefined) {
+        return ''
+      } else {
+        return this.property.text.replace(/\n/g, '<br>')
+      }
+    }
+
+
+    return {
+      title: state.title,
+      text: state.text,
+      datetime: state.datetime,
+      getText,
+      onDelete
+    }
   },
   props: {
     id: {
@@ -61,33 +96,7 @@ export default {
       require: true
     }
   },
-  data() {
-    return {
-      title: null,
-      text: null,
-      datetime: null
-    }
-  },
-  methods: {
-    onDelete: function () {
-      this.$globalDialog.showDialog('削除します', '本当によろしいですか？',
-          async () => {
-            await this.$api['schedule'].deleteSchedule(this.id)
-            await this.$router.push('/')
-          })
-    }
-  },
-  computed: {
-    getText() {
-      if (this.text === null) {
-        return null
-      } else {
-        return this.text.replace(/\n/g, '<br>')
-      }
-
-    }
-  }
-}
+})
 </script>
 
 <style scoped lang="scss">

@@ -71,6 +71,10 @@ export default {
     '@nuxtjs/firebase'
   ],
 
+  buildModules: [
+    '@nuxtjs/composition-api/module'
+  ],
+
   firebase: {
     config: {
       apiKey: process.env.API_KEY,
