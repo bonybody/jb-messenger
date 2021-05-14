@@ -70,6 +70,10 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/firebase'
   ],
+  
+  buildModules: [
+    '@nuxtjs/composition-api/module'
+  ],
 
   firebase: {
     config: {
