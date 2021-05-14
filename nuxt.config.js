@@ -72,7 +72,8 @@ export default {
   ],
 
   buildModules: [
-    '@nuxtjs/composition-api/module'
+    '@nuxtjs/composition-api/module',
+    '@nuxt/typescript-build'
   ],
 
   firebase: {
